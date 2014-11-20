@@ -6,7 +6,7 @@ var data = require("./products.json")
 // 1). getItemsArray(array)
 
 var getItems = function() {
-	return(data.items);
+	return data.items;
 }
 
 // console.log(getItems());
@@ -66,6 +66,28 @@ console.log(getItemsByBrand(getItems(), "Sony"));
 // 5.3)
 
 console.log(getAvailableProducts(getItemsByBrand(getItems(), "Sony")));
+
+
+
+// BONUS FUNCTION 
+
+
+// This function looks for any item that has a price greater than $1000, and returns it in a new array.
+
+var expensiveItems = function(array) {
+	var listPriceArray = [];
+	for(var i = 0; i < array.length; i+=1) {
+		if(array[i].product.inventories[0].price > 1000) {
+			listPriceArray.push(array[i]);
+		}
+	}
+	return listPriceArray;
+}
+
+
+
+console.log(expensiveItems(getItemsByBrand(data.items, "Canon")));
+
 
 
 
