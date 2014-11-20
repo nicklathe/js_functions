@@ -1,15 +1,82 @@
 //load products.json
 var data = require("./products.json")
 
-//define getItemsCount function
-//accepts full item data
-//returns the length of the items array
-var getItemsCount = function(itemData){
-	return itemData.items.length;
-};
+//     ...ANSWERS START BELOW... 
 
-//output item count using the getItemsCount function
-console.log('Item Count: ' + getItemsCount(data));
+// 1). getItemsArray(array)
 
-//create your answer in this file.
-//the above is just provided as a simple example.
+var getItems = function() {
+	return(data.items);
+}
+
+// console.log(getItems());
+
+// 2). getItemsByBrand(array, brand)
+
+var getItemsByBrand = function(array, itemBrand) {
+	var newItemsArray = [];
+	for(var i = 0; i < array.length; i+=1) {
+		if(array[i].product.brand === itemBrand) {
+			newItemsArray.push(array[i]);
+		}
+	}
+	return newItemsArray;
+}
+
+// console.log(getItemsByBrand(data.items, "Canon"));
+
+// 3.) getItemsByAuthor(array, author) 
+
+var getItemsByAuthor = function(array, author) {
+	var newAuthorArray = [];
+	for(var i = 0; i < array.length; i+=1) {
+		if(array[i].product.author.name.split(" ")[0] === author) {
+			newAuthorArray.push(array[i]);
+		}
+	}
+	return newAuthorArray;
+}
+
+// console.log(getItemsByAuthor(data.items, "eBay"));
+
+// 4.) getAvailableProducts(array)
+
+var getAvailableProducts = function(array) {
+	var newProductsArray = [];
+	for(var i = 0; i < array.length; i+=1) {
+		if(array[i].product.inventories[0].availability === "inStock") {
+			newProductsArray.push(array[i]);
+		}
+	}
+	return newProductsArray;
+}
+
+// console.log(getAvailableProducts(data.items));
+
+// 5.) Use your functions
+
+// 5.1)
+
+console.log(getItemsByAuthor(getItemsByBrand(getItems(), "Nikon"), "eBay"));
+
+// 5.2)
+
+console.log(getItemsByBrand(getItems(), "Sony"));
+
+// 5.3)
+
+console.log(getAvailableProducts(getItemsByBrand(getItems(), "Sony")));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
